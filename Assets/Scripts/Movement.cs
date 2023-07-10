@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] private float rotationThrust = 50f;
+    [SerializeField] private float mainThrust = 100f;
     Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +26,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(0, 1, 0);
+            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
         }
 
     }
@@ -31,11 +35,18 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            Debug.Log("A");
+            ApplyRotation(rotationThrust);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            Debug.Log("D");
+            ApplyRotation(-rotationThrust);
         }
+    }
+
+    void ApplyRotation(float rotationThisFrame)
+    {
+        rb.freezeRotation = true;
+        transform.Rotate(Vector3.forward * Time.deltaTime * rotationThisFrame);
+        rb.freezeRotation = false;
     }
 }
