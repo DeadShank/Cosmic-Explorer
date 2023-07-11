@@ -508,6 +508,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket
       objectReference: {fileID: 0}
+    - target: {fileID: 847312606967126532, guid: bc789446c0bbe734ba55a9f08dfcde2a, type: 3}
+      propertyPath: crashesSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d27d800d90de3324f9a9b0e47970b2ab, type: 3}
+    - target: {fileID: 847312606967126532, guid: bc789446c0bbe734ba55a9f08dfcde2a, type: 3}
+      propertyPath: crashesSequence
+      value: 
+      objectReference: {fileID: 8300000, guid: d27d800d90de3324f9a9b0e47970b2ab, type: 3}
+    - target: {fileID: 847312606967126532, guid: bc789446c0bbe734ba55a9f08dfcde2a, type: 3}
+      propertyPath: successSequence
+      value: 
+      objectReference: {fileID: 8300000, guid: 8299193cb08ff664eafabf1bfb4a4282, type: 3}
+    - target: {fileID: 4983083467638637944, guid: bc789446c0bbe734ba55a9f08dfcde2a, type: 3}
+      propertyPath: mainEngine
+      value: 
+      objectReference: {fileID: 8300000, guid: 668ea78ee0d1f3247a7ca1d1097e8799, type: 3}
     - target: {fileID: 5241014971047829379, guid: bc789446c0bbe734ba55a9f08dfcde2a, type: 3}
       propertyPath: m_RootOrder
       value: 5
