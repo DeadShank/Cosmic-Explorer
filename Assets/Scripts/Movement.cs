@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -9,20 +10,18 @@ public class Movement : MonoBehaviour
     [SerializeField] private float mainThrust = 100f;
     [SerializeField] AudioClip mainEngine;
     [SerializeField] ParticleSystem mainEngineParticles;
-    [SerializeField] ParticleSystem leftEngineParticles;
-    [SerializeField] ParticleSystem rightEngineParticles;
+    [SerializeField] ParticleSystem leftThrusterParticles;
+    [SerializeField] ParticleSystem rightThrusterParticles;
 
     Rigidbody rb;
     AudioSource audioSource;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         ProccesThrust();
@@ -33,46 +32,60 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
-            if (!audioSource.isPlaying )
-            {
-                audioSource.PlayOneShot(mainEngine);
-            }
-
-            if (!mainEngineParticles.isPlaying)
-            {
-                mainEngineParticles.Play();
-            }
-        } 
+            StartThrusting();
+        }
         else
         {
-            audioSource.Stop();
-            mainEngineParticles.Stop();
+            StopThrusting();
         }
+    }
+
+    private void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+
+        if (!mainEngineParticles.isPlaying)
+        {
+            mainEngineParticles.Play();
+        }
+    }
+
+    private void StopThrusting()
+    {
+        audioSource.Stop();
+        mainEngineParticles.Stop();
     }
 
     void ProcessRotation()
     {
         if (Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotationThrust, rightEngineParticles);
+            ApplyRotation(rotationThrust, rightThrusterParticles);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-rotationThrust, leftEngineParticles);
+            ApplyRotation(-rotationThrust, leftThrusterParticles);
         }
         else
         {
-            leftEngineParticles.Stop();
-            rightEngineParticles.Stop();
+            StopRotating();
         }
     }
 
-    void ApplyRotation(float rotationThisFrame, ParticleSystem LREngine)
+    void ApplyRotation(float rotationThisFrame, ParticleSystem Thrusters)
     {
         rb.freezeRotation = true;
         transform.Rotate(Vector3.forward * Time.deltaTime * rotationThisFrame);
         rb.freezeRotation = false;
-        LREngine.Play();
+        Thrusters.Play();
+    }
+    private void StopRotating()
+    {
+        leftThrusterParticles.Stop();
+        rightThrusterParticles.Stop();
     }
 }

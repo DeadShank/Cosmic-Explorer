@@ -85,8 +85,8 @@ MonoBehaviour:
   mainThrust: 800
   mainEngine: {fileID: 8300000, guid: 668ea78ee0d1f3247a7ca1d1097e8799, type: 3}
   mainEngineParticles: {fileID: 799853544549413690}
-  leftEngineParticles: {fileID: 907524377553344124}
-  rightEngineParticles: {fileID: 7530934881168425974}
+  leftThrusterParticles: {fileID: 907524377553344124}
+  rightThrusterParticles: {fileID: 7530934881168425974}
 --- !u!82 &1818481244013155805
 AudioSource:
   m_ObjectHideFlags: 0
@@ -682,7 +682,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 765908706338028246, guid: d4b06ebeeaf0ac044aeed997d98443c2, type: 3}
       propertyPath: m_Name
-      value: LeftFireParticles
+      value: LeftThrusterParticles
       objectReference: {fileID: 0}
     - target: {fileID: 771087676723270698, guid: d4b06ebeeaf0ac044aeed997d98443c2, type: 3}
       propertyPath: m_RootOrder
@@ -943,7 +943,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 765908706338028246, guid: d4b06ebeeaf0ac044aeed997d98443c2, type: 3}
       propertyPath: m_Name
-      value: RightFireParticles
+      value: RightThrusterParticles
       objectReference: {fileID: 0}
     - target: {fileID: 771087676723270698, guid: d4b06ebeeaf0ac044aeed997d98443c2, type: 3}
       propertyPath: m_RootOrder
